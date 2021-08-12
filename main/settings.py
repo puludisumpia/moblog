@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/3.2/ref/settings/
 """
 
 from pathlib import Path
+from django.contrib import messages
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -37,6 +38,16 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+
+     # Apps installés
+    "bootstrap5",
+    "crispy_forms",
+    "crispy_bootstrap5",
+    "django_summernote",
+    "bootstrap_pagination",
+
+    # Mes apps
+    "blog.apps.BlogConfig",
 ]
 
 MIDDLEWARE = [
@@ -103,9 +114,9 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/3.2/topics/i18n/
 
-LANGUAGE_CODE = 'en-us'
+LANGUAGE_CODE = 'fr-FR'
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'Europe/Paris'
 
 USE_I18N = True
 
@@ -118,8 +129,48 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.2/howto/static-files/
 
 STATIC_URL = '/static/'
+STATIC_ROOT = Path.joinpath(BASE_DIR, "static/")
+
+MEDIA_URL = "/media/"
+MEDIA_ROOT = Path.joinpath(BASE_DIR, "media/")
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+# Config crispy_forms
+CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap5"
+CRISPY_TEMPLATE_PACK = "bootstrap5"
+
+# Alertes Bootstrap
+MESSAGE_TAGS = {
+    messages.DEBUG: 'alert-info',
+    messages.INFO: 'alert-info',
+    messages.SUCCESS: 'alert-success',
+    messages.WARNING: 'alert-warning',
+    messages.ERROR: 'alert-danger',
+}
+
+# Config et corriger l'erreur Django_Summernote 
+# 127.0.0.1 a refusé la connexion.
+X_FRAME_OPTIONS = "SAMEORIGIN"
+SUMMERNOTE_THEME = "bs4"
+SUMMERNOTE_CONFIG = {
+    "summernote": {
+        "width": "100%",
+        "height": "500",
+    }
+}
+
+LOGIN_REDIRECT_URL = 'index'
+LOGIN_URL = 'connexion'
+LOGOUT_REDIRECT_URL = '/deconnexion'
+
+# Config gmail
+EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
+EMAIL_HOST = "smtp.gmail.com"
+EMAIL_USE_TLS = True
+EMAIL_PORT = 587
+EMAIL_HOST_USER = "puludisumpia@gmail.com"
+EMAIL_HOST_PASSWORD = "251095,;Mpia"
