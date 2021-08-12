@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+
+{% load crispy_forms_tags %}
+
+{% block title %}
+    Inscription
+{% endblock title %}
+
+{% block main %}
+    <div class="container">
+        <div class="content">
+            <h1>S'inscrire</h1>
+            <div class="formulaire">
+                {% include "alertes.html" %}
+                <form method="post">
+                    {% csrf_token %}
+                    {{ form|crispy }}
+                    <button type="submit" class="btn btn-primary">S'inscrire</button>
+                </form>
+            </div>
+        </div>
+    </div>
+{% endblock main %}
+© 2021 GitHub, Inc.

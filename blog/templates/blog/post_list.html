@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+
+{% load bootstrap_pagination %}
+
+{% block title %}
+    Blog
+{% endblock title %}
+
+
+{% block main %}
+    <div class="container">
+        {% for post in posts %}
+            <a href="{% url 'post_detail' slug=post.slug %}"><h1>{{ post.title }}</h1></a>
+        {% endfor %}
+
+        {% bootstrap_paginate posts %}
+    </div>
+{% endblock main %}

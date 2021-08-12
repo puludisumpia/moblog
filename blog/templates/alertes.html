@@ -1,0 +1,13 @@
+{% for message in messages %}
+    <div class="alert {{ message.tags }} alert-dismissible fade show" role="alert">
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        <p>{{ message }}</p>
+    </div>
+{% endfor %}
+
+
+<style>
+    .alert p{
+        margin-bottom: 0px;
+    }
+</style>

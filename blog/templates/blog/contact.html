@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+
+{% load crispy_forms_tags %}
+
+{% block title %}
+    Contact
+{% endblock title %}
+
+{% block main %}
+    <div class="container">
+        <div class="content">
+            <h1>Me contacter</h1>
+            <div class="formulaire">
+                {% include "alertes.html" %}
+                <form method="post">
+                    {% csrf_token %}
+                    {{ form|crispy }}
+                    <button type="submit" class="btn btn-primary">Envoyer</button>
+                </form>
+            </div>
+        </div>
+    </div>
+{% endblock main %}
