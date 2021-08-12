@@ -36,7 +36,7 @@ def connexion(request):
     else:
         form = LoginForm()
     ctx = {"form": form}
-    return render(request, "account/login.html", ctx)
+    return render(request, "blog/login.html", ctx)
 
 
 def inscription(request):
@@ -53,13 +53,13 @@ def inscription(request):
     else:
         form = InscriptionForm()
     ctx = {"form": form}
-    return render(request, "account/inscription.html", ctx)
+    return render(request, "blog/inscription.html", ctx)
 
 
 def deconnexion(request):
     logout(request)
     messages.info(request, "Déconnexion avec succès", "info")
-    return render(request, "account/logout.html")
+    return render(request, "blog/deconnexion.html")
 
 @login_required
 def index(request):
@@ -135,7 +135,7 @@ def contact(request):
                 subject,
                 body,
                 settings.EMAIL_HOST_USER,
-                recipient = [email],
+                [email],
                 fail_silently = False
             )
         

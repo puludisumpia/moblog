@@ -165,7 +165,7 @@ SUMMERNOTE_CONFIG = {
 
 LOGIN_REDIRECT_URL = 'index'
 LOGIN_URL = 'connexion'
-LOGOUT_REDIRECT_URL = '/deconnexion'
+LOGOUT_URL = '/deconnexion'
 
 # Config gmail
 EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
