@@ -20,7 +20,7 @@ def connexion(request):
             if user is not None:
                 if user.is_active:
                     dj_login(request, user)
-                    return redirect("index")
+                    return redirect("profile")
                 else:
                     messages.warning(
                         request,
@@ -61,11 +61,14 @@ def deconnexion(request):
     messages.info(request, "Déconnexion avec succès", "info")
     return render(request, "blog/deconnexion.html")
 
-@login_required
 def index(request):
     return render(request, "blog/index.html")
 
-def post_list(request):
+@login_required
+def profile(request):
+    return render(request, "blog/profile.html")
+
+def postList(request):
     articles = Post.objects.filter(status=1).order_by("-created_on")
     page = request.GET.get('page', 1)
     paginator = Paginator(articles, 10)
@@ -80,7 +83,7 @@ def post_list(request):
     }
     return render(request, "blog/post_list.html", ctx)
 
-def post_detail(request, slug):
+def postDetail(request, slug):
     post = get_object_or_404(Post, slug=slug)
     comments = post.comments.filter(active=True)
     new_comment = False
@@ -157,3 +160,19 @@ def contact(request):
     ctx = {"form": form}
     return render(request, "blog/contact.html", ctx)
 
+
+# Context_processors
+from datetime import datetime
+
+def inject_site_name(request):
+    return {"site_name": "mpia.com"}
+
+def inject_date(request):
+    return {"date": datetime.utcnow()}
+
+# Custom errors
+def page_not_found(request, exception=None):
+    return render(request, "blog/404.html", status=404)
+
+def server_error(request, exception=None):
+    return render(request, "blog/500.html", status=500)

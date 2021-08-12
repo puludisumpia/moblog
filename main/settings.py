@@ -24,9 +24,9 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-ns3t_bf7m^m#-rt33t13e_4hrko!%6^0z9a_yzvy-avf&41n@&'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ["localhost", "127.0.0.1"]
 
 
 # Application definition
@@ -73,6 +73,9 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                # Mes context_processors
+                "blog.views.inject_date",
+                "blog.views.inject_site_name",
             ],
         },
     },
@@ -163,7 +166,7 @@ SUMMERNOTE_CONFIG = {
     }
 }
 
-LOGIN_REDIRECT_URL = 'index'
+LOGIN_REDIRECT_URL = 'profile'
 LOGIN_URL = 'connexion'
 LOGOUT_URL = '/deconnexion'
 
