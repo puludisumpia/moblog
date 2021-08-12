@@ -11,6 +11,7 @@ djangorestframework = "*"
 django-bootstrap-pagination = "*"
 crispy-bootstrap5 = "*"
 django-summernote = "*"
+pillow = "*"
 
 [dev-packages]
 
