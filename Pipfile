@@ -1,0 +1,18 @@
+[[source]]
+url = "https://pypi.org/simple"
+verify_ssl = true
+name = "pypi"
+
+[packages]
+django = "*"
+django-bootstrap-v5 = "*"
+django-filter = "*"
+djangorestframework = "*"
+django-bootstrap-pagination = "*"
+crispy-bootstrap5 = "*"
+django-summernote = "*"
+
+[dev-packages]
+
+[requires]
+python_version = "3.9"
